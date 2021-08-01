@@ -67,7 +67,9 @@ for (i in 1:length(files)) {
                  best.cluster,
                  diss=FALSE,
                  stand=FALSE)
-  
+  #create matrix of cluster id for each location
+  clust_id= res.pam$clustering
+  assign(paste0(month, "_clustID"), clust_id)
   
   fviz_cluster(res.pam,
                stand= FALSE,
@@ -126,3 +128,16 @@ for (i in 1:length(files)) {
   
 }
 
+#create matrix of cluster id numbers
+clust_matrix= cbind(matrix(Jan_clustID), matrix(Feb_clustID), matrix(Mar_clustID), matrix(Apr_clustID), matrix(May_clustID), matrix(Jun_clustID), matrix(Jul_clustID), matrix(Aug_clustID), matrix(Sep_clustID), matrix(Oct_clustID), matrix(Nov_clustID), matrix(Dec_clustID))
+
+#create blank matrix to assign match numbers to
+match_matrix= matrix(nrow = 17, ncol = 17)
+rownames(match_matrix) = location
+colnames(match_matrix)= location
+
+#for loop comparing all rows of matrix and counting matches
+for (i in 1:nrow(clust_matrix)) for(j in 1:nrow(clust_matrix)){
+  matches= length(which(clust_matrix[i,]== clust_matrix[j,]))
+  match_matrix[i,j]= matches 
+} 
