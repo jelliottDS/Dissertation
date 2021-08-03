@@ -1,0 +1,33 @@
+$`1`
+              v.test Mean in category Overall mean sd in category Overall sd    p.value
+uvb_jm2_43  2.387310          0.78009   0.56486765        0.02157 0.13167639 0.01697217
+temperatur  2.157125          0.94438   0.85719588        0.02045 0.05903254 0.03099595
+prec_mm_43 -2.062575          0.04252   0.28562765        0.04252 0.17215445 0.03915304
+wet_monthl -2.216128          0.00000   0.29575941        0.00000 0.19492752 0.02668276
+aermr02_kg -2.283827          0.01182   0.07444765        0.00124 0.04005274 0.02238170
+TOW_freque -2.630527          0.00000   0.29530412        0.00000 0.16396687 0.00852526
+
+$`2`
+              v.test Mean in category Overall mean sd in category Overall sd    p.value
+wet_monthl -2.142268       0.07023667    0.2957594     0.02593886  0.1949275 0.03217192
+
+$`3`
+            v.test Mean in category Overall mean sd in category Overall sd     p.value
+prec_mm_43 2.60221          0.59234    0.2856276        0.00583  0.1721545 0.009262508
+
+$`4`
+NULL
+
+$`5`
+NULL
+
+$`6`
+NULL
+
+$`7`
+              v.test Mean in category Overall mean sd in category Overall sd     p.value
+aermr02_kg  2.784082        0.1346700   0.07444765    0.013417879 0.04005274 0.005367940
+TOW_freque  2.637531        0.5288633   0.29530412    0.050299544 0.16396687 0.008351209
+temperatur -2.566586        0.7753700   0.85719588    0.007059688 0.05903254 0.010270519
+uvb_jm2_43 -2.830189        0.3636033   0.56486765    0.033979418 0.13167639 0.004652050
+
