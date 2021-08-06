@@ -106,25 +106,25 @@ for (i in 1:length(files)) {
   # )
   # ggsave(file.path('graphs', filename=paste(month, "_new_var_direction.pdf", sep="")))
   # 
-  # fviz_contrib(res.pca, 
-  #              choice = "var", 
-  #              axes = 1,
-  #              top = 10,
-  #              palette = "jco",
-  #              ggtheme = theme_minimal(),
-  #              title = paste(month, "Additional Locations PC1 Contributions", sep=" "))
-  # 
-  # ggsave(file.path('graphs', filename=paste(month, "_new_pc1.pdf", sep="")))
-  # 
-  # fviz_contrib(res.pca,
-  #              choice = "var", 
-  #              axes = 2, 
-  #              top = 10,
-  #              palette = "jco",
-  #              ggtheme = theme_minimal(),
-  #              title = paste(month, "Additional Locations PC2 Contributions", sep=" "))
-  # 
-  # ggsave(file.path('graphs', filename=paste(month, "_new_pc2.pdf", sep="")))
+  fviz_contrib(res.pca,
+               choice = "var",
+               axes = 1,
+               top = 10,
+               palette = "jco",
+               ggtheme = theme_minimal(),
+               title = paste(month, "Additional Locations PC1 Contributions", sep=" "))
+
+  ggsave(file.path('./graphs/', filename=paste(month, "_new_pc1.png", sep="")))
+
+  fviz_contrib(res.pca,
+               choice = "var",
+               axes = 2,
+               top = 10,
+               palette = "jco",
+               ggtheme = theme_minimal(),
+               title = paste(month, "Additional Locations PC2 Contributions", sep=" "))
+
+  ggsave(file.path('./graphs/', filename=paste(month, "_new_pc2.png", sep="")))
   # 
   # head(res.hcpc$data.clust, 10)
   # res.hcpc$desc.var$quanti

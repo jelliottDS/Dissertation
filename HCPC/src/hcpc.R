@@ -107,7 +107,7 @@ for (i in 1:length(files)) {
         font.tickslab = c(14, "bold", "red"))
   ggsave(file.path('graphs', filename=paste(month, "_cluster.png", sep="")))
   assign(paste0(month, "_clust"), clust)
-}
+
 # fviz_pca_var(res.pca,
 #              repel = TRUE,            # Avoid label overlapping
 #              show.clust.cent = TRUE, # Show cluster centers
@@ -117,28 +117,28 @@ for (i in 1:length(files)) {
 # )
 # ggsave(file.path('graphs', filename=paste(month, "_var_direction.pdf", sep="")))
 # 
-# fviz_contrib(res.pca, 
-#              choice = "var", 
-#              axes = 1,
-#              top = 10,
-#              palette = "jco",
-#              ggtheme = theme_minimal(),
-#              title = paste(month, "Original PC1 Contributions", sep=" "))
-# 
-# ggsave(file.path('graphs', filename=paste(month, "_pc1.pdf", sep="")))
-# 
-# fviz_contrib(res.pca,
-#              choice = "var", 
-#              axes = 2, 
-#              top = 10,
-#              palette = "jco",
-#              ggtheme = theme_minimal(),
-#              title = paste(month, "Original PC2 Contributions", sep=" "))
-# 
-# ggsave(file.path('graphs', filename=paste(month, "_pc2.pdf", sep="")))
+fviz_contrib(res.pca,
+             choice = "var",
+             axes = 1,
+             top = 10,
+             palette = "jco",
+             ggtheme = theme_minimal(),
+             title = paste(month, "Original PC1 Contributions", sep=" "))
+
+ggsave(file.path('graphs', filename=paste(month, "_pc1.png", sep="")))
+
+fviz_contrib(res.pca,
+             choice = "var",
+             axes = 2,
+             top = 10,
+             palette = "jco",
+             ggtheme = theme_minimal(),
+             title = paste(month, "Original PC2 Contributions", sep=" "))
+
+ggsave(file.path('graphs', filename=paste(month, "_pc2.png", sep="")))
 # 
 
-
+}
 
 # res.hcpc= HCPC(res.pca2, nb.clust = best.cluster, iter.max = 10, method = 'average', graph = TRUE, description=TRUE, consol = FALSE)
 # 
