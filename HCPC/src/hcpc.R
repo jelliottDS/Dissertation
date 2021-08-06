@@ -1,4 +1,4 @@
-#Required packages FactoMineR, factoextra, dplyr,plyr
+#Required packages FactoMineR, factoextra, dplyr,plyr, ggpubr
 
 files = list.files(path="./data", pattern= "*data.csv", full.names = TRUE)
 
@@ -23,14 +23,19 @@ for (i in 1:length(files)) {
   #% explained variance of each component
   expl.var <- round(res.pca$sdev^2/sum(res.pca$sdev^2)*100)
   #visualise explained variance 
-  # fviz_screeplot(res.pca,
-  #                repel = TRUE,            # Avoid label overlapping
-  #                show.clust.cent = TRUE, # Show cluster centers
-  #                palette = "jco",         # Color palette see ?ggpubr::ggpar
-  #                ggtheme = theme_minimal(),
-  #                title = paste(month, "Original Scree Plot", sep=" ")
-  # )
-  # ggsave(file.path('graphs', filename=paste(month, "_scree.pdf", sep="")))
+  scree= fviz_screeplot(res.pca,
+                 repel = TRUE,            # Avoid label overlapping
+                 show.clust.cent = TRUE, # Show cluster centers
+                 palette = "jco",         # Color palette see ?ggpubr::ggpar
+                 ggtheme = theme_minimal(),
+                 #title = paste(month, "Original Scree Plot", sep=" ")
+  )
+  ggpar(scree,
+        font.main = 0,
+        font.x = c(14, "red"),
+        font.y = c(14, "red"),
+        font.tickslab = c(14, "bold", "red"))
+  ggsave(file.path('graphs', filename=paste(month, "_scree.png", sep="")))
   # 
   # #scatter plot cities pca
   # fviz_pca_ind(res.pca,
@@ -50,14 +55,21 @@ for (i in 1:length(files)) {
   # Compute hierarchical clustering and cut into n clusters
   res.hcut <- hcut(res.pca$x, k = best.cluster)
   # Visualize
-  fviz_dend(res.hcut,
+  dend= fviz_dend(res.hcut,
             cex = 0.7,                     # Label size
             palette = "jco",               # Color palette see ?ggpubr::ggpar
             rect = TRUE, rect_fill = TRUE, # Add rectangle around groups
             rect_border = "jco",           # Rectangle color
-            labels_track_height = 0.8,      # Augment the room for labels
-            main= paste(month, "Original Dendrogram", sep=" ")
-  )  
+            labels_track_height = 0.3,      # Augment the room for labels
+            main= paste(month, "Original Dendrogram", sep=" "),
+            #horiz-TRUE,
+            lower_rect= -0.3
+  )
+  ggpar(dend,
+        font.main = 0,
+        font.x = c(14, "red"),
+        font.y = c(14, "red"),
+        font.tickslab = c(14, "bold", "red"))
   ggsave(file.path('graphs', filename=paste(month, "_dend.png", sep="")))
   
   #create matrix of cluster id for each location
@@ -83,9 +95,16 @@ for (i in 1:length(files)) {
                       show.clust.cent = TRUE, # Show cluster centers
                       palette = "jco",         # Color palette see ?ggpubr::ggpar
                       ggtheme = theme_minimal(),
-                      main = paste(month, "PAM Clustering", sep=" ")
-
-  )
+                      main = paste(month, "PAM Clustering", sep=" "),
+                      labels_track_height = 0.3,
+                      lower_rect= -0.3
+                      
+)
+  ggpar(clust,
+        font.main = 0,
+        font.x = c(14, "red"),
+        font.y = c(14, "red"),
+        font.tickslab = c(14, "bold", "red"))
   ggsave(file.path('graphs', filename=paste(month, "_cluster.png", sep="")))
   assign(paste0(month, "_clust"), clust)
 }
@@ -121,15 +140,15 @@ for (i in 1:length(files)) {
 
 
 
-res.hcpc= HCPC(res.pca2, nb.clust = best.cluster, iter.max = 10, method = 'average', graph = TRUE, description=TRUE, consol = FALSE)
-
-
-cluster_vars=res.hcpc$desc.var$quanti
-for(i in 1:length(cluster_vars)){
-  df= data.frame(cluster_vars[[i]])
-  print(df)
-  capture.output(df, file = paste(names(cluster_vars)[i], paste(month, "_cluster_variables.csv", sep=""), sep = "_"))
-}
+# res.hcpc= HCPC(res.pca2, nb.clust = best.cluster, iter.max = 10, method = 'average', graph = TRUE, description=TRUE, consol = FALSE)
+# 
+# 
+# cluster_vars=res.hcpc$desc.var$quanti
+# for(i in 1:length(cluster_vars)){
+#   df= data.frame(cluster_vars[[i]])
+#   print(df)
+#   capture.output(df, file = paste(names(cluster_vars)[i], paste(month, "_cluster_variables.csv", sep=""), sep = "_"))
+# }
 
 
 # vi_df = ldply (var_importance, data.frame)
@@ -160,7 +179,10 @@ for (i in 1:nrow(clust_matrix)) for(j in 1:nrow(clust_matrix)){
     match_matrix[i,j]= matches 
 } 
 
-heatmap.2( match_matrix, Rowv=FALSE, Colv=FALSE, dendrogram='none', cellnote=match_matrix, notecol="black", trace='none', key=FALSE,lwid = c(.01,.99),lhei = c(.01,.99),margins = c(5,15 ))
+png(file = "./graphs/match_matrix_ffp.png")
+heatmap.2( match_matrix, Rowv=FALSE, Colv=FALSE, dendrogram='none', cellnote=match_matrix, notecol="black", trace='none', key=FALSE,lwid = c(.01,.99),lhei = c(.01,.99),margins = c(5,15 ))  ## default - dendrogram plotted and reordering done.
+dev.off()  
+
 
 
 # Times in same cluster PAM
@@ -177,5 +199,7 @@ for (i in 1:nrow(clust_matrix_pam)) for(j in 1:nrow(clust_matrix_pam)){
   matches= length(which(clust_matrix_pam[i,]== clust_matrix_pam[j,]))
   match_matrix_pam[i,j]= matches 
 } 
-
+png(file = "./graphs/match_matrix_ffp_pam.png")
 heatmap.2( match_matrix_pam, Rowv=FALSE, Colv=FALSE, dendrogram='none', cellnote=match_matrix_pam, notecol="black", trace='none', key=FALSE,lwid = c(.01,.99),lhei = c(.01,.99),margins = c(5,15 ))
+dev.off() 
+
