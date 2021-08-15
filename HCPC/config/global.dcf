@@ -8,7 +8,7 @@ munging: TRUE
 logging: FALSE
 logging_level: INFO
 load_libraries: TRUE
-libraries: reshape2, plyr, tidyverse, stringr, lubridate, FactoMineR, factoextra, dplyr, cluster, NbClust, gplots, gridExtra, png, ggpubr
+libraries: reshape2, plyr, tidyverse, stringr, lubridate, FactoMineR, factoextra, dplyr, cluster, NbClust, gplots, gridExtra, png, ggpubr, corrplot
 as_factors: FALSE
 tables_type: tibble
 attach_internal_libraries: FALSE

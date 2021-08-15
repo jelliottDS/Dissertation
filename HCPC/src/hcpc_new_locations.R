@@ -142,23 +142,6 @@ for (i in 1:length(files)) {
   
 }
 
-#create matrix of cluster id numbers
-clust_matrix_new= cbind(matrix(Jan_clustID), matrix(Feb_clustID), matrix(Mar_clustID), matrix(Apr_clustID), matrix(May_clustID), matrix(Jun_clustID), matrix(Jul_clustID), matrix(Aug_clustID), matrix(Sep_clustID), matrix(Oct_clustID), matrix(Nov_clustID), matrix(Dec_clustID))
-
-#create blank matrix to assign match numbers to
-match_matrix_new= matrix(nrow = 27, ncol = 27)
-rownames(match_matrix_new) = location
-colnames(match_matrix_new)= location
-
-#for loop comparing all rows of matrix and counting matches
-for (i in 1:nrow(clust_matrix_new)) for(j in 1:nrow(clust_matrix_new)){
-  matches= length(which(clust_matrix_new[i,]== clust_matrix_new[j,]))
-  match_matrix_new[i,j]= matches 
-} 
-png(file = "./graphs/match_matrix_new.png")
-heatmap.2( match_matrix_new, Rowv=FALSE, Colv=FALSE, dendrogram='none', cellnote=match_matrix_new, notecol="black", trace='none', key=FALSE,lwid = c(.01,.99),lhei = c(.01,.99),margins = c(5,15 ))
-dev.off()
-
 
 #create matrix of cluster id numbers
 clust_matrix_new_pam= cbind(matrix(Jan_clustID_pam), matrix(Feb_clustID_pam), matrix(Mar_clustID_pam), matrix(Apr_clustID_pam), matrix(May_clustID_pam), matrix(Jun_clustID_pam), matrix(Jul_clustID_pam), matrix(Aug_clustID_pam), matrix(Sep_clustID_pam), matrix(Oct_clustID_pam), matrix(Nov_clustID_pam), matrix(Dec_clustID_pam))
@@ -176,5 +159,8 @@ for (i in 1:nrow(clust_matrix_new_pam)) for(j in 1:nrow(clust_matrix_new_pam)){
 
 
 png(file = "./graphs/match_matrix_new_pam.png")
-heatmap.2( match_matrix_new_pam, Rowv=FALSE, Colv=FALSE, dendrogram='none', cellnote=match_matrix_new_pam, notecol="black", trace='none', key=FALSE,lwid = c(.01,.99),lhei = c(.01,.99),margins = c(5,15 ))
+corrplot(match_matrix_new_pam, is.corr=FALSE, method='square', order='alphabet', diag=FALSE, type='lower', number.digits = 0,col.lim=c(0,12), col=colorRampPalette(c("white","red"))(200), tl.col = "blue", cl.length = 7, title= "Number of months two locations share the same cluster", mar=c(1, 1, 1, 1))
 dev.off()
+
+
+
