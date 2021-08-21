@@ -18,6 +18,8 @@ for (i in 1:length(files)) {
   rownames(data) = location
   data = data[2:7]
   rownames(data) = location
+  cols=c("T", "FOW", "NaCl", "P", "UVR", "TOW")
+  colnames(data)=cols
   
   #pca on data
   res.pca = prcomp(data, retx=TRUE, center=TRUE, scale=FALSE)
@@ -106,24 +108,36 @@ for (i in 1:length(files)) {
   # )
   # ggsave(file.path('graphs', filename=paste(month, "_new_var_direction.pdf", sep="")))
   # 
-  fviz_contrib(res.pca,
-               choice = "var",
-               axes = 1,
-               top = 10,
-               palette = "jco",
-               ggtheme = theme_minimal(),
-               title = paste(month, "Additional Locations PC1 Contributions", sep=" "))
-
+  pc1= fviz_contrib(res.pca,
+                    choice = "var",
+                    axes = 1,
+                    top = 10,
+                    palette = "jco",
+                    axis.text= 12,
+                    title= NULL,
+                    ggtheme = theme_minimal(),
+  )
+  
+  ggpar(pc1,
+        font.main = 0,
+        font.y = c(20, "red"),
+        font.tickslab = c(20, "bold", "red"))
   ggsave(file.path('./graphs/', filename=paste(month, "_new_pc1.png", sep="")))
 
-  fviz_contrib(res.pca,
-               choice = "var",
-               axes = 2,
-               top = 10,
-               palette = "jco",
-               ggtheme = theme_minimal(),
-               title = paste(month, "Additional Locations PC2 Contributions", sep=" "))
-
+  pc2= fviz_contrib(res.pca,
+                    choice = "var",
+                    axes = 2,
+                    top = 10,
+                    palette = "jco",
+                    title= NULL,
+                    ggtheme = theme_minimal(),
+  )
+  
+  ggpar(pc2,
+        font.main = 0,
+        font.y = c(20, "red"),
+        font.tickslab = c(20, "bold", "red"))
+  
   ggsave(file.path('./graphs/', filename=paste(month, "_new_pc2.png", sep="")))
   # 
   # head(res.hcpc$data.clust, 10)

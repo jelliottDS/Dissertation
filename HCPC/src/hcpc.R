@@ -15,6 +15,8 @@ for (i in 1:length(files)) {
   location= data$city
   rownames(data) = location
   data = data[2:7]
+  cols=c("T", "FOW", "NaCl", "P", "UVR", "TOW")
+  colnames(data)=cols
   
   #pca on data
   res.pca = prcomp(data, retx=TRUE, center=TRUE, scale=FALSE)
@@ -117,23 +119,36 @@ for (i in 1:length(files)) {
 # )
 # ggsave(file.path('graphs', filename=paste(month, "_var_direction.pdf", sep="")))
 # 
-fviz_contrib(res.pca,
+pc1= fviz_contrib(res.pca,
              choice = "var",
              axes = 1,
              top = 10,
              palette = "jco",
+             axis.text= 12,
+             title= NULL,
              ggtheme = theme_minimal(),
-             title = paste(month, "Original PC1 Contributions", sep=" "))
+             )
+
+ggpar(pc1,
+      font.main = 0,
+      font.y = c(20, "red"),
+      font.tickslab = c(20, "bold", "red"))
 
 ggsave(file.path('graphs', filename=paste(month, "_pc1.png", sep="")))
 
-fviz_contrib(res.pca,
+pc2= fviz_contrib(res.pca,
              choice = "var",
              axes = 2,
              top = 10,
              palette = "jco",
+             title= NULL,
              ggtheme = theme_minimal(),
-             title = paste(month, "Original PC2 Contributions", sep=" "))
+             )
+
+ggpar(pc2,
+      font.main = 0,
+      font.y = c(20, "red"),
+      font.tickslab = c(20, "bold", "red"))
 
 ggsave(file.path('graphs', filename=paste(month, "_pc2.png", sep="")))
 # 
