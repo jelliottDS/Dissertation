@@ -307,8 +307,8 @@ font-size: 20pt;
 <!-- Poster Title -->
 <div class= "poster_title">
 <h1 id="title">Analysis of the climate of AkzoNobel’s Exposure Testing Sites and their relationship to global climates.</h1>
-<h3 id="author">Jamie Elliott<sup>1</sup></h3>
-<h5 id="affiliation"><sup>1</sup> School of Computing, Newcastle University</h5>
+<h3 id="author">Jamie Elliott<sup></sup></h3>
+<h5 id="affiliation"><sup></sup> School of Computing, Newcastle University</h5>
 </div>
 <!-- Right Logo  -->
 <div class="logo_right">
@@ -325,7 +325,7 @@ font-size: 20pt;
 </style>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>In order to better understand the resistance of a coating to the atmospheric environment AkzoNobel use “Exposure Testing Sites” (ETSs) where coated substrates are left exposed to the atmosphere and then performance is assessed.</p>
+<p>The aim of this project is to compare the environments of AkzoNobel’s Exposure Testing Sites (ETSs) and how they relate to the range of environments globally, in order to improve the global coverage of AkzoNobel’s product performance assessments</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-1"></span>
 <img src="Dissertation-Poster_files/figure-html/ffp_locations.png" alt="Global Exposure testing sites of AkzoNobel" width="70%" />
 <p class="caption">
@@ -336,8 +336,8 @@ Figure 1: Global Exposure testing sites of AkzoNobel
 <h2>Objectives</h2>
 <ol style="list-style-type: decimal">
 <li>Build a relevant climate data set.</li>
-<li>Compare the climate of exposure test sites to each other.</li>
-<li>Compare climate of exposure test sites to global climates documents.</li>
+<li>Compare the climate of ETSs to each other.</li>
+<li>Compare climate of ETSs to global climates documents.</li>
 <li>Suggest locations for new ETSs that would improve global climate coverage of ETSs.</li>
 </ol>
 </div>
@@ -347,39 +347,39 @@ Figure 1: Global Exposure testing sites of AkzoNobel
 <div id="vairables-used" class="section level2">
 <h2>Vairables used:</h2>
 <ul>
-<li><p>Temperature: the mean temperature for each month</p></li>
-<li><p>Precipitation: the total amount of precipitation each month</p></li>
-<li><p>UV Radiation: the mean UV radiation for each month</p></li>
-<li><p>Time of Wetness: the total time that surfaces are wet in a month</p></li>
-<li><p>Frequency of Wetness: the number of times of wet to dry or dry to wet cycle in each month</p></li>
+<li><p>Temperature: the mean temperature for each month.</p></li>
+<li><p>Precipitation: the total amount of precipitation for each month.</p></li>
+<li><p>UV Radiation: the mean UV radiation for each month.</p></li>
+<li><p>Time of Wetness: the total time that surfaces are wet in a month.</p></li>
+<li><p>Frequency of Wetness: the number of times of wet to dry or dry to wet cycle in each month.</p></li>
 </ul>
 </div>
 <div id="analysis" class="section level2">
 <h2>Analysis:</h2>
 <ul>
-<li><p>Hierarchical clustering on principle components and Partition Around Meidiods were utilised to compare ETS to each other. This was carried out for each month of the year. The number of times two locations were clustered together across the year was used as a measure of how distinct each ETS was.</p></li>
-<li><p>Dynamic Time Warping (DTW) was used to compare the climate of ETSs to global climates. This was used to create a heatmap that shows the global climate coverage of the existing AkzoNobel ETSs.</p></li>
+<li><p>Hierarchical clustering on principle components (1) and Partition Around Mediods were utilised to compare ETSs to each other. This was carried out for each month of the year. The number of times two locations were clustered together across the year was used as a measure of how distinct each ETS was.</p></li>
+<li><p>Dynamic Time Warping (DTW)(2) was used to compare the climate of ETSs to global climates. This was used to create a heatmap that shows the global climate coverage of the existing AkzoNobel ETSs.</p></li>
 <li><p>Three new ETS locations (Lima, Kinshasa and Jakarta) were suggested based on global areas of low similarity and having distinct climates to existing ETSs. The aim was to improve global climate coverage of low similarity areas. These locations were included in DTW analysis to measure the impact on global climate coverage.</p></li>
 </ul>
 </div>
 </div>
 <div id="results" class="section level1">
 <h1>Results</h1>
-<p>Figure <a href="#fig:match-matrix-ffp">2</a> shows locations with significant overlap in climate and also locations who’s climates are distinct from other ETSs. Dammam and Phoenix; Houston, Pudong, Songjiang and Suzhou; Melbourne and Willawong are identifies as having significant overlap that is not intuitively obvious.</p>
+<p>Figure <a href="#fig:match-matrix-ffp">2</a> shows locations with significant overlap in climate and also locations whose climates are distinct from other ETSs. Dammam and Phoenix; Houston, Pudong, Songjiang and Suzhou; Melbourne and Willawong are identified as having significant overlap that is not intuitively expected.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:match-matrix-ffp"></span>
 <img src="Dissertation-Poster_files/figure-html/match_matrix_ffp_pam.png" alt="Number of times two ETS share the same cluster" width="70%" />
 <p class="caption">
 Figure 2: Number of times two ETS share the same cluster
 </p>
 </div>
-Figure <a href="#fig:max-dtw-ffp">3</a> shows the maximum similarity of ETSs compared to global climates by metric of Dynamic Time Warping. South America, Sub-Saharan Africa and South East Asia stand out as areas of low similarity.
+Figure <a href="#fig:max-dtw-ffp">3</a> shows the maximum similarity of ETSs compared to global climates by metric of DTW. South America, Sub-Saharan Africa and South East Asia stand out as areas of low similarity.
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:max-dtw-ffp"></span>
 <img src="Dissertation-Poster_files/figure-html/max_dtw.png" alt="Heatmap of maximum similarity value when compared to any Exposure testing site" width="70%" />
 <p class="caption">
 Figure 3: Heatmap of maximum similarity value when compared to any Exposure testing site
 </p>
 </div>
-<p>Figure <a href="#fig:max-dtw-new">4</a> shows that the inclusion of Lima, Kinshasa and Jakarta has not had a significant impact on improving the global coverage. These additional locations are distinct from existing ETS but likely also have distinct climates on a global scale.</p>
+<p>Figure <a href="#fig:max-dtw-new">4</a> shows that the inclusion of Lima, Kinshasa and Jakarta has not had a significant impact on improving the global coverage. These additional locations are distinct from existing ETSs but likely also have distinct climates on a global scale.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:max-dtw-new"></span>
 <img src="Dissertation-Poster_files/figure-html/max_dtw_new.png" alt="Heatmap of maximum similarity value when compared to any Exposure testing site including additional locations" width="70%" />
 <p class="caption">
@@ -392,19 +392,19 @@ Figure 4: Heatmap of maximum similarity value when compared to any Exposure test
 <ul>
 <li><p>Identifying the optimum number of ETSs based on the effect of each ETS on global climate coverage and removing ETSs with similar climates.</p></li>
 <li><p>Improve the method of identifying additional locations that will have significant improvement on the global climate coverage by clustering locations of low similarity and identifying low similarity paragons. Include these paragons in comparison to global climates using DTW.</p></li>
-<li><p>Conduct real world exposure testing will to validate the suggestions made in this report.</p></li>
+<li><p>Conduct real world exposure testing to validate the suggestions made in this report.</p></li>
 </ul>
 </div>
 <div id="conclusion" class="section level1">
 <h1>Conclusion</h1>
 <p>Existing ETSs that are not significantly different and existing ETSs with distinct climates have been identified.</p>
-<p>Global areas of high similarity to current ETS and areas that are not covered by existing ETS have been identified. New ETS locations suggested in this report have not significantly improved global climate coverage.</p>
+<p>Global areas of high similarity to current ETSs and areas that are not covered by existing ETSs have been identified. New ETS locations suggested in this report have not significantly improved global climate coverage.</p>
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
-<p>1, P. Netzel, J. Nowosad, J. Jasiewicz, J. Niesterowicz,T. Stepinski.GeoPAT 2: user’s manual. feb 2018. <a href="doi:10.5281/ZENODO.1291123" class="uri">doi:10.5281/ZENODO.1291123</a>.</p>
-<p>2, J.P, Praene, B. Malet-Damour, M.Radanielina, L. Fontaine, G. Rivière. GIS-based approach to identify climatic zoning: A hierarchical cluster-
+<p>1, J.P, Praene, B. Malet-Damour, M.Radanielina, L. Fontaine, G. Rivière. GIS-based approach to identify climatic zoning: A hierarchical cluster-
 ing on principal component analysis. Building and Environment, 164(July):106330, 2019. ISSN 03601323. <a href="doi:10.1016/j.buildenv.2019.106330" class="uri">doi:10.1016/j.buildenv.2019.106330</a>.</p>
+<p>2, P. Netzel, J. Nowosad, J. Jasiewicz, J. Niesterowicz,T. Stepinski.GeoPAT 2: user’s manual. feb 2018. <a href="doi:10.5281/ZENODO.1291123" class="uri">doi:10.5281/ZENODO.1291123</a>.</p>
 </div>
 </div>
 </div>

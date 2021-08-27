@@ -26,10 +26,15 @@ Normalisation of Precipitation data
 2. Select "Open Existin Script" from Python button in "Processing Toolbox" window and select "precipitation normarlisation.txt".
 3. Select Precipitation data rasters and process through the script.
 
+Once rasters have been pre-processed and normalised these processed data raster should be used as the input rasters for GeoPAT2 code. 
+
 Extracting data for ETS locations
 1. Select "Plugins"> "Manage and Install Plugins" from QGIS toolbar
 2. Search and install "Point Sampling Tool"
 3. Import coordinates of ETSs using Layers>add layers>Add Delimited Text Layer then select "ETS_locations.csv"
 4. Click point sampling tool button, make sure "ETS_locations.csv" is selected as "Layer containing sampling points:"
-5. Select all climate raster data sets in the section "Layers with fields/bands to get values from"
+5. Select all climate raster data sets in the section "Layers with fields/bands to get values from". Raster layers should be selected on a month by month basis e.g select all rasters relating to January, save the output, then repeat for all rasters relating to February etc
 6. In "Output point vector layer:" choose a destination to save the file. 
+
+The output of this is the same data that is included in the "data" folder for the ProjectTemplate R code.  
+The output

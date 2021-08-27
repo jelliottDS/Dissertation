@@ -2,9 +2,9 @@
 title: Analysis of the climate of AkzoNobel's Exposure Testing Sites and their relationship to global climates.
 author:
   - name: Jamie Elliott
-    affil: 1
+    affil: 
 affiliation:
-  - num: 1
+  - num: 
     address: School of Computing, Newcastle University
 column_numbers: 3
 logoright_name: "./Dissertation-Poster_files/figure-html/Newcastle_University_logo.png"
@@ -30,55 +30,55 @@ bibliography: packages.bib
 
 # Introduction
 
-In order to better understand the resistance of a coating to the atmospheric environment AkzoNobel use "Exposure Testing Sites" (ETSs) where coated substrates are left exposed to the atmosphere and then performance is assessed.
+The aim of this project is to compare the environments of AkzoNobel's Exposure Testing Sites (ETSs) and how they relate to the range of environments globally, in order to improve the global coverage  of AkzoNobel's product performance assessments
 
 ```{r, echo=FALSE, out.width="70%", fig.cap="Global Exposure testing sites of AkzoNobel", fig.align="center"}
 knitr::include_graphics("./Dissertation-Poster_files/figure-html/ffp_locations.png")
 ```
 
-## Objectives
+##  Objectives
 
 1. Build a relevant climate data set. 
-2. Compare the climate of exposure test sites to each other.
-3. Compare climate of exposure test sites to global climates documents.
+2. Compare the climate of ETSs to each other.
+3. Compare climate of ETSs to global climates documents.
 4. Suggest locations for new ETSs that would improve global climate coverage of ETSs.
 
 # Methods
 
 ## Vairables used:
 
-  * Temperature: the mean temperature for each month
+  * Temperature: the mean temperature for each month.
 
-  * Precipitation: the total amount of precipitation each month
+  * Precipitation: the total amount of precipitation for each month.
 
-  * UV Radiation: the mean UV radiation for each month
+  * UV Radiation: the mean UV radiation for each month.
 
-  * Time of Wetness: the total time that surfaces are wet in a month
+  * Time of Wetness: the total time that surfaces are wet in a month.
 
-  * Frequency of Wetness: the number of times of wet to dry or dry to wet cycle in each month  
+  * Frequency of Wetness: the number of times of wet to dry or dry to wet cycle in each month.  
 
 ## Analysis: 
 
-* Hierarchical clustering on principle components and Partition Around Meidiods were utilised to compare ETS to each other. This  was carried out for each month of the year. The number of times two locations were clustered together across the year was used as a measure of how distinct each ETS was.
+* Hierarchical clustering on principle components (1) and Partition Around Mediods were utilised to compare ETSs to each other. This  was carried out for each month of the year. The number of times two locations were clustered together across the year was used as a measure of how distinct each ETS was.
 
-* Dynamic Time Warping (DTW) was used to compare the climate of ETSs to global climates. This was used to create a heatmap that shows the global climate coverage of the existing AkzoNobel ETSs.
+* Dynamic Time Warping (DTW)(2) was used to compare the climate of ETSs to global climates. This was used to create a heatmap that shows the global climate coverage of the existing AkzoNobel ETSs.
 
 * Three new ETS locations (Lima, Kinshasa and Jakarta)  were suggested based on global areas of low similarity and having distinct climates to existing ETSs. The aim was to improve global climate coverage of low similarity areas. These locations were included in DTW analysis to measure the impact on global climate coverage.    
 
 # Results
 
-Figure \@ref(fig:match-matrix-ffp) shows locations with significant overlap in climate and also locations who's climates are distinct from other ETSs. Dammam and Phoenix; Houston, Pudong, Songjiang and Suzhou; Melbourne and Willawong are identifies as having significant overlap that is not intuitively obvious.  
+Figure \@ref(fig:match-matrix-ffp) shows locations with significant overlap in climate and also locations whose climates are distinct from other ETSs. Dammam and Phoenix; Houston, Pudong, Songjiang and Suzhou; Melbourne and Willawong are identified as having significant overlap that is not intuitively expected.  
 
 ```{r match-matrix-ffp, echo=FALSE, out.width="70%", fig.cap="Number of times two ETS share the same cluster", fig.align="center"}
 knitr::include_graphics("./Dissertation-Poster_files/figure-html/match_matrix_ffp_pam.png")
 ```
 
-Figure \@ref(fig:max-dtw-ffp) shows the maximum similarity of ETSs compared to global climates by metric of Dynamic Time Warping. South America, Sub-Saharan Africa and South East Asia stand out as areas of low similarity.
+Figure \@ref(fig:max-dtw-ffp) shows the maximum similarity of ETSs compared to global climates by metric of DTW. South America, Sub-Saharan Africa and South East Asia stand out as areas of low similarity.
 ```{r max-dtw-ffp, echo=FALSE, out.width="70%", fig.cap="Heatmap of maximum similarity value when compared to any Exposure testing site", fig.align="center"}
 knitr::include_graphics("./Dissertation-Poster_files/figure-html/max_dtw.png")
 ```
 
-Figure \@ref(fig:max-dtw-new) shows that the inclusion of Lima, Kinshasa and Jakarta has not had a significant impact on improving the global coverage. These additional locations are distinct from existing ETS but likely also have distinct climates on a global scale.  
+Figure \@ref(fig:max-dtw-new) shows that the inclusion of Lima, Kinshasa and Jakarta has not had a significant impact on improving the global coverage. These additional locations are distinct from existing ETSs but likely also have distinct climates on a global scale.  
 
 ```{r max-dtw-new, echo=FALSE, out.width="70%", fig.cap="Heatmap of maximum similarity value when compared to any Exposure testing site including additional locations", fig.align="center"}
 knitr::include_graphics("./Dissertation-Poster_files/figure-html/max_dtw_new.png")
@@ -93,16 +93,18 @@ knitr::include_graphics("./Dissertation-Poster_files/figure-html/max_dtw_new.png
 
 * Improve the method of identifying additional locations that will have significant improvement on the global climate coverage by clustering locations of low similarity and identifying low similarity paragons. Include these paragons in comparison to global climates using DTW.
 
-* Conduct real world exposure testing will to validate the suggestions made in this report.
+* Conduct real world exposure testing to validate the suggestions made in this report.
 
 # Conclusion
 
 Existing ETSs that are not significantly different and existing ETSs with distinct climates have been identified. 
 
-Global areas of high similarity to current ETS and areas that are not covered by existing ETS have been identified. New ETS locations suggested in this report have not significantly improved global climate coverage.
+Global areas of high similarity to current ETSs and areas that are not covered by existing ETSs have been identified. New ETS locations suggested in this report have not significantly improved global climate coverage.
 
 # References
-1, P. Netzel, J. Nowosad, J. Jasiewicz, J. Niesterowicz,T. Stepinski.GeoPAT 2: user’s manual. feb 2018. doi:10.5281/ZENODO.1291123. 
+1, J.P, Praene, B. Malet-Damour, M.Radanielina, L. Fontaine, G. Rivière. GIS-based approach to identify climatic zoning: A hierarchical cluster-
+ing on principal component analysis. Building and Environment, 164(July):106330, 2019. ISSN 03601323. doi:10.1016/j.buildenv.2019.106330.
 
-2, J.P, Praene, B. Malet-Damour, M.Radanielina, L. Fontaine, G. Rivière. GIS-based approach to identify climatic zoning: A hierarchical cluster-
-ing on principal component analysis. Building and Environment, 164(July):106330, 2019. ISSN 03601323. doi:10.1016/j.buildenv.2019.106330. 
+2, P. Netzel, J. Nowosad, J. Jasiewicz, J. Niesterowicz,T. Stepinski.GeoPAT 2: user’s manual. feb 2018. doi:10.5281/ZENODO.1291123. 
+
+ 

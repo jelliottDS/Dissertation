@@ -1,7 +1,8 @@
-#Required packages FactoMineR, factoextra, dplyr,plyr, cluster, NbClust
+#read in data files that include data for suggested ETS locations
 
 files = list.files(path="./data", pattern= "*_lowest_cities.csv", full.names = TRUE)
 
+#function for clustering and creating visualisations
 for (i in 1:length(files)) {
   
   #to enable naming of plots with month
@@ -41,14 +42,7 @@ for (i in 1:length(files)) {
         font.tickslab = c(14, "bold", "red"))
   ggsave(file.path('graphs', filename=paste(month, "_new_scree.png", sep="")))
 
-  # #scatter plot cities pca
-  # fviz_pca_ind(res.pca,
-  #              #col.ind = "cos2", # Color by the quality of representation
-  #              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
-  #              repel = TRUE,     # Avoid text overlapping,
-  #              main = paste(month, "Additional Locations Scatter Plot", sep=" ")
-  # )
-  # ggsave(file.path('graphs', filename=paste(month, "_new_scatter.png", sep="")))
+
   
   #calculate the best number of clusters by ward linkage
   number.cluster <- NbClust(res.pca$x, distance = "euclidean", min.nc = 1, max.nc = 10, method = "ward.D", index = "ch")
@@ -76,14 +70,13 @@ for (i in 1:length(files)) {
   clust_id= res.hcut$cluster
   assign(paste0(month, "_clustID"), clust_id)
   
-  #fviz_pca_biplot(res.pca, repel = TRUE)
   
   #compute PAM clustering and visualise 
   res.pam <- pam(res.pca$x, 
                  best.cluster,
                  diss=FALSE,
                  stand=FALSE)
-  #create matrix of cluster id for each location
+  #create matrix of cluster id for each location(needed for count of same times in each cluster)
   clust_id= res.pam$clustering
   assign(paste0(month, "_clustID_pam"), clust_id)
   
@@ -104,15 +97,7 @@ for (i in 1:length(files)) {
   ggsave(file.path('graphs', filename=paste(month, "_new_cluster.png", sep="")))
   
   
-  # fviz_pca_var(res.pca,
-  #              repel = TRUE,            # Avoid label overlapping
-  #              show.clust.cent = TRUE, # Show cluster centers
-  #              palette = "jco",         # Color palette see ?ggpubr::ggpar
-  #              ggtheme = theme_minimal(),
-  #              title = paste(month, "Additional Locations Variable Direction", sep=" ")
-  # )
-  # ggsave(file.path('graphs', filename=paste(month, "_new_var_direction.pdf", sep="")))
-  # 
+#plot variable contributions to PC1 
   pc1= fviz_contrib(res.pca,
                     choice = "var",
                     axes = 1,
@@ -129,6 +114,7 @@ for (i in 1:length(files)) {
         font.tickslab = c(20, "bold", "red"))
   ggsave(file.path('./graphs/', filename=paste(month, "_new_pc1.png", sep="")))
 
+#plot variable contributions to PC2 
   pc2= fviz_contrib(res.pca,
                     choice = "var",
                     axes = 2,
@@ -144,23 +130,10 @@ for (i in 1:length(files)) {
         font.tickslab = c(20, "bold", "red"))
   
   ggsave(file.path('./graphs/', filename=paste(month, "_new_pc2.png", sep="")))
-  # 
-  # head(res.hcpc$data.clust, 10)
-  # res.hcpc$desc.var$quanti
-  # var_importance= res.hcpc$desc.var$quanti
-  # capture.output(res.hcpc$desc.var$quanti, file = "Var_importance jul.txt")
-  # 
-  # vi_df = ldply (var_importance, data.frame)
-  # vi_df=subset(vi_df, select=c(".id", "Mean.in.category", "Overall.mean", "p.value"))
-  # vi_df=rename(vi_df, c(".id"="Cluster", "Mean.in.category"="Mean In Cluster", "Overall.mean" = "Overall Mean", "p.value"= "p Value"))
-  # vi_df =vi_df %>% mutate_at(vars("Mean In Cluster", "Overall Mean", "p Value"), funs(round(., 2)))
-  # 
-  # data.frame(matrix(unlist(var_importance), nrow=length(var_importance), byrow=T))
-  # res.hcpc$desc.axes$quanti
-  # capture.output(res.hcpc$desc.axes$quanti, file = "dim_importance jan.txt")
-  
+ 
 }
 
+#Code for counting and plotting the number of times two locations share a cluster
 
 #create matrix of cluster id numbers
 clust_matrix_new_pam= cbind(matrix(Jan_clustID_pam), matrix(Feb_clustID_pam), matrix(Mar_clustID_pam), matrix(Apr_clustID_pam), matrix(May_clustID_pam), matrix(Jun_clustID_pam), matrix(Jul_clustID_pam), matrix(Aug_clustID_pam), matrix(Sep_clustID_pam), matrix(Oct_clustID_pam), matrix(Nov_clustID_pam), matrix(Dec_clustID_pam))
@@ -176,7 +149,7 @@ for (i in 1:nrow(clust_matrix_new_pam)) for(j in 1:nrow(clust_matrix_new_pam)){
   match_matrix_new_pam[i,j]= matches 
 } 
 
-
+#save plot of number of times two locations share the same cluster 
 png(file = "./graphs/match_matrix_new_pam.png")
 corrplot(match_matrix_new_pam, is.corr=FALSE, method='square', order='alphabet', diag=FALSE, type='lower', number.digits = 0,col.lim=c(0,12), col=colorRampPalette(c("white","red"))(200), tl.col = "blue", cl.length = 7, title= "Number of months two locations share the same cluster", mar=c(1, 1, 1, 1))
 dev.off()

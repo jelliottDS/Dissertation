@@ -4,23 +4,25 @@
 
 #only show 2 d.p.
 options(digits=2)
-#ffp location data
+#read in variable values for each location
 ffp_df= read.csv("./data/ffp_variable_means.csv")
 city= ffp_df$city
+#calculate the variable avalues as a percentage of the data set mean
 ffp_df= apply(ffp_df[2:7],2, function(x)(x/mean(x)*100))
 ffp_df= data.frame(ffp_df)
+#format df with column names and city names included
 ffp_df=cbind(City=city, ffp_df)
 columns= c("city","TOW", "UVR", "T", "P", "NaCl", "FOW")# "City")
 colnames(ffp_df)= columns
 
 
-
-mins= c(186,	135,	112,	177.2,	245,	153)
-maxs=c(8.7,	62,	88,	8,	19,	18)
+#create variables of minim and maximum values for each variable(necessary for radarchart funtion)
+maxs= c(186,	135,	112,	177.2,	245,	153)
+mins=c(8.7,	62,	88,	8,	19,	18)
 ffp_df2= ffp_df[2:7] 
 rownames(ffp_df2)= city
 
-
+#create df for each location for plotting radarchart
 for(i in 1:nrow(ffp_df)){
   city= ffp_df[i,1]
   df=data.frame(mins=mins,
@@ -29,7 +31,7 @@ for(i in 1:nrow(ffp_df)){
   assign(paste(city, "df", sep="_"), df)
 } 
  
-  
+#plot radar chart and save files  
 
 png(file = "./graphs/bangalore_var_means.png")
 par(mar =c(0,0,0,0))
@@ -117,7 +119,7 @@ radarchart(data.frame(t(Willawong_df)), pfcol="darkorchid3", vlcex = 1.75)
 dev.off()
 
 
-#lowest similarities cities data
+#repetition of the above steps to plot radar chart for Lima, Kinshasa and Jakarta
 lowest_df= read.csv("./data/lowest_sim_variable_means.csv")
 lowest_city= lowest_df$city
 lowest_df=apply(lowest_df[2:7],2, function(x) (x/mean(x)*100))
