@@ -8,22 +8,29 @@ affiliation:
     address: School of Computing, Newcastle University
 column_numbers: 3
 logoright_name: "./Dissertation-Poster_files/figure-html/Newcastle_University_logo.png"
-primary_colour: "#3371D6"
+logoleft_name: "./Dissertation-Poster_files/figure-html/AkzoNobel_logo_RGB.png"
+primary_colour: "#79B8E5"
 
-output: 
+output:
   posterdown::posterdown_html:
     self_contained: false
 bibliography: packages.bib
 ---
-
+<style>
+#main-img-left, #main-img-center, #main-img-right {
+ width: 500%;
+}
+</style>
  
 ```{r setup, include=FALSE}
  knitr::opts_chunk$set(echo = FALSE)
 ```
 
+
+
 # Introduction
 
-In order to better understand the resistance of a coating to the atmospheric environment AkzoNobel use "exposure testing site"s (ETSs) where coated substrates are left exposed to the atmosphere and then performance is assessed.
+In order to better understand the resistance of a coating to the atmospheric environment AkzoNobel use "Exposure Testing Sites" (ETSs) where coated substrates are left exposed to the atmosphere and then performance is assessed.
 
 ```{r, echo=FALSE, out.width="70%", fig.cap="Global Exposure testing sites of AkzoNobel", fig.align="center"}
 knitr::include_graphics("./Dissertation-Poster_files/figure-html/ffp_locations.png")
@@ -32,9 +39,9 @@ knitr::include_graphics("./Dissertation-Poster_files/figure-html/ffp_locations.p
 ## Objectives
 
 1. Build a relevant climate data set. 
-2. Compare the climate of exposure test sites to each other
-3. Compare climate of exposure test sites to global climates documents
-4. Suggest locations for new ETSs that would improve global climate coverage of ETSs
+2. Compare the climate of exposure test sites to each other.
+3. Compare climate of exposure test sites to global climates documents.
+4. Suggest locations for new ETSs that would improve global climate coverage of ETSs.
 
 # Methods
 
@@ -56,17 +63,17 @@ knitr::include_graphics("./Dissertation-Poster_files/figure-html/ffp_locations.p
 
 * Dynamic Time Warping (DTW) was used to compare the climate of ETSs to global climates. This was used to create a heatmap that shows the global climate coverage of the existing AkzoNobel ETSs.
 
-* Three new ETS locations (Lima, Kinshasa and Jakarta)  were suggested based on global areas of low similarity and having distinct climates to existing ETSs. These locations were included in DTW analysis to measure the improvement in global climate coverage.    
+* Three new ETS locations (Lima, Kinshasa and Jakarta)  were suggested based on global areas of low similarity and having distinct climates to existing ETSs. The aim was to improve global climate coverage of low similarity areas. These locations were included in DTW analysis to measure the impact on global climate coverage.    
 
 # Results
 
-Figure \@ref(fig:match-matrix-ffp) shows locations with significant overlap in climate and also locations who's climates are distinct from other ETSs 
+Figure \@ref(fig:match-matrix-ffp) shows locations with significant overlap in climate and also locations who's climates are distinct from other ETSs. Dammam and Phoenix; Houston, Pudong, Songjiang and Suzhou; Melbourne and Willawong are identifies as having significant overlap that is not intuitively obvious.  
 
 ```{r match-matrix-ffp, echo=FALSE, out.width="70%", fig.cap="Number of times two ETS share the same cluster", fig.align="center"}
 knitr::include_graphics("./Dissertation-Poster_files/figure-html/match_matrix_ffp_pam.png")
 ```
 
-Figure \@ref(fig:max-dtw-ffp) shows the maximum similarity of ETSs compared to global climates by metric of Dynamic Time Warping.
+Figure \@ref(fig:max-dtw-ffp) shows the maximum similarity of ETSs compared to global climates by metric of Dynamic Time Warping. South America, Sub-Saharan Africa and South East Asia stand out as areas of low similarity.
 ```{r max-dtw-ffp, echo=FALSE, out.width="70%", fig.cap="Heatmap of maximum similarity value when compared to any Exposure testing site", fig.align="center"}
 knitr::include_graphics("./Dissertation-Poster_files/figure-html/max_dtw.png")
 ```
@@ -78,11 +85,13 @@ knitr::include_graphics("./Dissertation-Poster_files/figure-html/max_dtw_new.png
 ```
 
 
+
+
 # Next Steps
 
 * Identifying the optimum number of ETSs based on the effect of each ETS on global climate coverage and removing ETSs with similar climates.
 
-* Improve the method of identifying additional locations that will have significant improvement on the global climate coverage by clustering locations of low similarity and identifying low similarity paragons. Include these paragons in comparison to global climates using Dynamic Time Warping.
+* Improve the method of identifying additional locations that will have significant improvement on the global climate coverage by clustering locations of low similarity and identifying low similarity paragons. Include these paragons in comparison to global climates using DTW.
 
 * Conduct real world exposure testing will to validate the suggestions made in this report.
 
@@ -93,3 +102,7 @@ Existing ETSs that are not significantly different and existing ETSs with distin
 Global areas of high similarity to current ETS and areas that are not covered by existing ETS have been identified. New ETS locations suggested in this report have not significantly improved global climate coverage.
 
 # References
+1, P. Netzel, J. Nowosad, J. Jasiewicz, J. Niesterowicz,T. Stepinski.GeoPAT 2: user’s manual. feb 2018. doi:10.5281/ZENODO.1291123. 
+
+2, J.P, Praene, B. Malet-Damour, M.Radanielina, L. Fontaine, G. Rivière. GIS-based approach to identify climatic zoning: A hierarchical cluster-
+ing on principal component analysis. Building and Environment, 164(July):106330, 2019. ISSN 03601323. doi:10.1016/j.buildenv.2019.106330. 

@@ -27,15 +27,20 @@ for (i in 1:length(files)) {
   #% explained variance of each component
   expl.var <- round(res.pca$sdev^2/sum(res.pca$sdev^2)*100)
   #visualise explained variance 
-  # fviz_screeplot(res.pca,
-  #                repel = TRUE,            # Avoid label overlapping
-  #                show.clust.cent = TRUE, # Show cluster centers
-  #                palette = "jco",         # Color palette see ?ggpubr::ggpar
-  #                ggtheme = theme_minimal(),
-  #                mian = paste(month, "Additional Locations Scree Plot", sep=" ")
-  # )
-  # ggsave(file.path('graphs', filename=paste(month, "_new_scree.png", sep="")))
-  # 
+  scree= fviz_screeplot(res.pca,
+                 repel = TRUE,            # Avoid label overlapping
+                 show.clust.cent = TRUE, # Show cluster centers
+                 palette = "jco",         # Color palette see ?ggpubr::ggpar
+                 ggtheme = theme_minimal(),
+                 mian = paste(month, "Additional Locations Scree Plot", sep=" ")
+  )
+  ggpar(scree,
+        font.main = 0,
+        font.x = c(14, "red"),
+        font.y = c(14, "red"),
+        font.tickslab = c(14, "bold", "red"))
+  ggsave(file.path('graphs', filename=paste(month, "_new_scree.png", sep="")))
+
   # #scatter plot cities pca
   # fviz_pca_ind(res.pca,
   #              #col.ind = "cos2", # Color by the quality of representation

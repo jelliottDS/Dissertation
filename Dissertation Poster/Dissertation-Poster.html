@@ -51,15 +51,15 @@ padding: 0cm;
 width: 100%;
 height: 15%;
 overflow: hidden;
-background-color: #3371D6;
-border: 0 solid #3371D6
+background-color: #79B8E5;
+border: 0 solid #79B8E5
 ;
 }
 .logo_left {
 float: left;
 width: 10%;
 height: 100%;
-background-color: #3371D6;
+background-color: #79B8E5;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -68,7 +68,7 @@ justify-content: center;
 float: right;
 width: 10%;
 height: 100%;
-background-color: #3371D6;
+background-color: #79B8E5;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -125,9 +125,9 @@ column-rule-width: 1mm;
 -webkit-column-rule-style: dashed;
 -moz-column-rule-style: dashed;
 column-rule-style: dashed;
--webkit-column-rule-color: #3371D6;
--moz-column-rule-color: #3371D6;
-column-rule-color: #3371D6;
+-webkit-column-rule-color: #79B8E5;
+-moz-column-rule-color: #79B8E5;
+column-rule-color: #79B8E5;
 column-gap: 1em;
 padding-left: 0.5em;
 padding-right: 0.5em;
@@ -177,8 +177,8 @@ margin-bottom: 0;
 text-align: center;
 color: #FFFFFF;
 font-size: 65pt;
-border: 2mm solid #3371D6;
-background-color: #3371D6;
+border: 2mm solid #79B8E5;
+background-color: #79B8E5;
 border-radius: 4mm 0mm;
 margin-top: 2mm;
 margin-bottom: 2mm;
@@ -247,7 +247,7 @@ code {
 font-size: 1em;
 font-family: monospace;
 background-color: #00808024;
-color: #3371D6;
+color: #79B8E5;
 padding: 1.2mm;
 border-radius: 2mm;
 }
@@ -302,6 +302,7 @@ font-size: 20pt;
 <div class="title_container">
 <!-- Left Logo  -->
 <div class="logo_left">
+<img src=./Dissertation-Poster_files/figure-html/AkzoNobel_logo_RGB.png style="width: 80%">
 </div>
 <!-- Poster Title -->
 <div class= "poster_title">
@@ -317,9 +318,14 @@ font-size: 20pt;
 
 <div class='poster_body_wrap'>
 <div class='poster_body'>
+<style>
+#main-img-left, #main-img-center, #main-img-right {
+ width: 500%;
+}
+</style>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>In order to better understand the resistance of a coating to the atmospheric environment AkzoNobel use “exposure testing site”s (ETSs) where coated substrates are left exposed to the atmosphere and then performance is assessed.</p>
+<p>In order to better understand the resistance of a coating to the atmospheric environment AkzoNobel use “Exposure Testing Sites” (ETSs) where coated substrates are left exposed to the atmosphere and then performance is assessed.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-1"></span>
 <img src="Dissertation-Poster_files/figure-html/ffp_locations.png" alt="Global Exposure testing sites of AkzoNobel" width="70%" />
 <p class="caption">
@@ -330,9 +336,9 @@ Figure 1: Global Exposure testing sites of AkzoNobel
 <h2>Objectives</h2>
 <ol style="list-style-type: decimal">
 <li>Build a relevant climate data set.</li>
-<li>Compare the climate of exposure test sites to each other</li>
-<li>Compare climate of exposure test sites to global climates documents</li>
-<li>Suggest locations for new ETSs that would improve global climate coverage of ETSs</li>
+<li>Compare the climate of exposure test sites to each other.</li>
+<li>Compare climate of exposure test sites to global climates documents.</li>
+<li>Suggest locations for new ETSs that would improve global climate coverage of ETSs.</li>
 </ol>
 </div>
 </div>
@@ -353,20 +359,20 @@ Figure 1: Global Exposure testing sites of AkzoNobel
 <ul>
 <li><p>Hierarchical clustering on principle components and Partition Around Meidiods were utilised to compare ETS to each other. This was carried out for each month of the year. The number of times two locations were clustered together across the year was used as a measure of how distinct each ETS was.</p></li>
 <li><p>Dynamic Time Warping (DTW) was used to compare the climate of ETSs to global climates. This was used to create a heatmap that shows the global climate coverage of the existing AkzoNobel ETSs.</p></li>
-<li><p>Three new ETS locations (Lima, Kinshasa and Jakarta) were suggested based on global areas of low similarity and having distinct climates to existing ETSs. These locations were included in DTW analysis to measure the improvement in global climate coverage.</p></li>
+<li><p>Three new ETS locations (Lima, Kinshasa and Jakarta) were suggested based on global areas of low similarity and having distinct climates to existing ETSs. The aim was to improve global climate coverage of low similarity areas. These locations were included in DTW analysis to measure the impact on global climate coverage.</p></li>
 </ul>
 </div>
 </div>
 <div id="results" class="section level1">
 <h1>Results</h1>
-<p>Figure <a href="#fig:match-matrix-ffp">2</a> shows locations with significant overlap in climate and also locations who’s climates are distinct from other ETSs</p>
+<p>Figure <a href="#fig:match-matrix-ffp">2</a> shows locations with significant overlap in climate and also locations who’s climates are distinct from other ETSs. Dammam and Phoenix; Houston, Pudong, Songjiang and Suzhou; Melbourne and Willawong are identifies as having significant overlap that is not intuitively obvious.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:match-matrix-ffp"></span>
 <img src="Dissertation-Poster_files/figure-html/match_matrix_ffp_pam.png" alt="Number of times two ETS share the same cluster" width="70%" />
 <p class="caption">
 Figure 2: Number of times two ETS share the same cluster
 </p>
 </div>
-Figure <a href="#fig:max-dtw-ffp">3</a> shows the maximum similarity of ETSs compared to global climates by metric of Dynamic Time Warping.
+Figure <a href="#fig:max-dtw-ffp">3</a> shows the maximum similarity of ETSs compared to global climates by metric of Dynamic Time Warping. South America, Sub-Saharan Africa and South East Asia stand out as areas of low similarity.
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:max-dtw-ffp"></span>
 <img src="Dissertation-Poster_files/figure-html/max_dtw.png" alt="Heatmap of maximum similarity value when compared to any Exposure testing site" width="70%" />
 <p class="caption">
@@ -385,7 +391,7 @@ Figure 4: Heatmap of maximum similarity value when compared to any Exposure test
 <h1>Next Steps</h1>
 <ul>
 <li><p>Identifying the optimum number of ETSs based on the effect of each ETS on global climate coverage and removing ETSs with similar climates.</p></li>
-<li><p>Improve the method of identifying additional locations that will have significant improvement on the global climate coverage by clustering locations of low similarity and identifying low similarity paragons. Include these paragons in comparison to global climates using Dynamic Time Warping.</p></li>
+<li><p>Improve the method of identifying additional locations that will have significant improvement on the global climate coverage by clustering locations of low similarity and identifying low similarity paragons. Include these paragons in comparison to global climates using DTW.</p></li>
 <li><p>Conduct real world exposure testing will to validate the suggestions made in this report.</p></li>
 </ul>
 </div>
@@ -396,6 +402,9 @@ Figure 4: Heatmap of maximum similarity value when compared to any Exposure test
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
+<p>1, P. Netzel, J. Nowosad, J. Jasiewicz, J. Niesterowicz,T. Stepinski.GeoPAT 2: user’s manual. feb 2018. <a href="doi:10.5281/ZENODO.1291123" class="uri">doi:10.5281/ZENODO.1291123</a>.</p>
+<p>2, J.P, Praene, B. Malet-Damour, M.Radanielina, L. Fontaine, G. Rivière. GIS-based approach to identify climatic zoning: A hierarchical cluster-
+ing on principal component analysis. Building and Environment, 164(July):106330, 2019. ISSN 03601323. <a href="doi:10.1016/j.buildenv.2019.106330" class="uri">doi:10.1016/j.buildenv.2019.106330</a>.</p>
 </div>
 </div>
 </div>

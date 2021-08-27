@@ -15,8 +15,8 @@ colnames(ffp_df)= columns
 
 
 
-mins= c(8.7,	135,	112,	177.2,	245,	153)
-maxs=c(186,	62,	88,	8,	19,	18)
+mins= c(186,	135,	112,	177.2,	245,	153)
+maxs=c(8.7,	62,	88,	8,	19,	18)
 ffp_df2= ffp_df[2:7] 
 rownames(ffp_df2)= city
 
@@ -126,8 +126,8 @@ lowest_df=cbind(City=lowest_city, lowest_df)
 colnames(lowest_df)= columns
 
 
-mins_new= c(2.2,57,86,195.8,294.1,182.1)
-maxs_new=c(242.1,	132,	112,	2.5,	5.5,	6.3)
+mins_new= c(242.1,	132,	112,195.8,	294.1,	182.1)
+maxs_new=c(2.2,57,86,2.5,5.5,6.3)
 lowest_df2= lowest_df[2:7] 
 rownames(lowest_df2)= lowest_city
 
@@ -148,7 +148,7 @@ dev.off()
 
 png(file = "./graphs/kinshasa_var_means.png")
 par(mar =c(0,0,0,0))
-radarchart(data.frame(t(Kinshasa_df_new)), pfcol="darkorange1", vlcex = 1.75)
+radarchart(data.frame(t(Kinshasa_df_new)), axistype=2, pfcol="darkorange1", vlcex = 1.75)
 dev.off()
 
 png(file = "./graphs/jakarta_var_means.png")
